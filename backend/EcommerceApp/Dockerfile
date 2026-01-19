@@ -7,6 +7,8 @@ WORKDIR /build
 COPY pom.xml .
 COPY Library ./Library
 COPY Customer ./Customer
+COPY Admin ./Admin
+COPY Delivery ./Delivery
 
 # Build only Customer module (along with Library, skip Admin/Delivery)
 RUN mvn clean package -pl Customer -am -DskipTests
