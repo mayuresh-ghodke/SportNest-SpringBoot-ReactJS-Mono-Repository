@@ -3,12 +3,12 @@ FROM maven:3.9.6-eclipse-temurin-17 AS builder
 
 WORKDIR /build
 
-# Copy parent pom and modules needed
-COPY ../../pom.xml .
-COPY ../Library ./Library
-COPY . .  # copy Customer module contents
+# Copy parent pom and Library module
+COPY pom.xml .
+COPY Library ./Library
+COPY Customer ./Customer
 
-# Build Customer module along with dependencies (Library)
+# Build only Customer module (along with Library, skip Admin/Delivery)
 RUN mvn clean package -pl Customer -am -DskipTests
 
 # ---------- RUNTIME STAGE ----------
