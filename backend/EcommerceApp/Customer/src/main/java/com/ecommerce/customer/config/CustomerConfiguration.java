@@ -90,8 +90,7 @@ public class CustomerConfiguration {
 
         config.setAllowedOrigins(List.of(
                 "http://localhost:3000",
-                "https://sport-nest-springboot-react-js-mono.vercel.app",
-                "https://sport-nest-springboot-react-js-monorepo-4uxvf1i4c.vercel.app"
+                "https://sportnest-pied.vercel.app"
         ));
 
         config.setAllowedMethods(List.of(
