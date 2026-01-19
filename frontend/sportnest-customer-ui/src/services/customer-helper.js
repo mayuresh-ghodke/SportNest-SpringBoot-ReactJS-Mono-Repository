@@ -28,7 +28,7 @@ api.interceptors.response.use(
   (error) => {
     // Backend not reachable / network error
     if (!error.response) {
-      toast.error("Server is not reachable. Please try again later.");
+      toast.info("Server is waking up. Please wait 40-59 seconds.");
     } 
     // Unauthorized (JWT expired or invalid)
     else if (error.response.status === 401) {
