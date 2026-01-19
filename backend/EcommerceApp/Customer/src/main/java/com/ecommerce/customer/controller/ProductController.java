@@ -25,7 +25,7 @@ import java.util.Map;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/product") // prefix for API endpoints
-@CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true") // React app
+//@CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true") // React app
 public class ProductController {
 
     private final ProductService productService;

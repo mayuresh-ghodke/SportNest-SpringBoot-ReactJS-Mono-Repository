@@ -20,7 +20,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api") // prefix for API endpoints
-@CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true") // React app
+//@CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true") // React app
 public class CategoryAndSubCategoryController {
 
     private final CategoryService categoryService;

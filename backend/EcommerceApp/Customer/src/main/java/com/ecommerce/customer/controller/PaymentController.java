@@ -31,7 +31,7 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/payment") // prefix for API endpoints
-@CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true") // React app
+//@CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true") // React app
 public class PaymentController {
 
     /*

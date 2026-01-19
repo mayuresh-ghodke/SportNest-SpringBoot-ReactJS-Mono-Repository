@@ -17,7 +17,7 @@ import java.security.Principal;
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/checkout") // prefix for API endpoints
-@CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true") // React app
+//@CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true") // React app
 public class CheckoutController {
 
     private final CustomerService customerService;

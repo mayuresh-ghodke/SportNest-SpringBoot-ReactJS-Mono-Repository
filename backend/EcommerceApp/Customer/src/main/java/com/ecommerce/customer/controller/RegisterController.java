@@ -1,19 +1,15 @@
 package com.ecommerce.customer.controller;
 
-import com.ecommerce.library.dto.ForgotPasswordRequestDto;
-import com.ecommerce.library.dto.email.EmailOtpVerifyRequestDto;
-import com.ecommerce.library.dto.email.EmailRequestDto;
 import com.ecommerce.library.model.Customer;
 import com.ecommerce.library.service.CustomerService;
 import com.ecommerce.library.service.EmailSenderService;
-import com.ecommerce.library.service.OtpService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.http.HttpStatus;
 import com.ecommerce.library.dto.CustomerDto;
 import jakarta.validation.Valid;
 
@@ -22,12 +18,13 @@ import java.util.Map;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api")
-@CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true")
+//@CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true")
 public class RegisterController {
 
 
     private final CustomerService customerService;
-    private final BCryptPasswordEncoder passwordEncoder;
+//    private final BCryptPasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
     private final EmailSenderService emailSenderService;
 
     @PostMapping(value = "/register", produces = MediaType.APPLICATION_JSON_VALUE)

@@ -23,7 +23,7 @@ import java.util.Map;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/wishlist")
-@CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true") // React app
+//@CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true") // React app
 public class WishlistController {
 
     private final ProductService productService;
