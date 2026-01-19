@@ -2,8 +2,12 @@
 import axios from "axios";
 import { toast } from "react-toastify";
 
+// const api = axios.create({
+//   baseURL: "http://localhost:8020/shop/api",
+// });
+
 const api = axios.create({
-  baseURL: "http://localhost:8020/shop/api",
+  baseURL: "https://sportnest-springboot-reactjs-mono.onrender.com/shop/api",
 });
 
 // Attach JWT before every request
