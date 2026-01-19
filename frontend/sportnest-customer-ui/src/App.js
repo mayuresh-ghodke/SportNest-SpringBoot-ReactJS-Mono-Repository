@@ -1,7 +1,5 @@
 import { BrowserRouter } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
-
-import TopBar from "./components/layout/TopBar";
 import MainTop from "./components/layout/MainTop";
 import Navbar from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer";
@@ -20,7 +18,6 @@ function App() {
           closeOnClick
           pauseOnHover
         />
-      {/* <TopBar /> */}
       <MainTop />
       <Navbar cartCount={0} />
 
