@@ -1,28 +1,12 @@
 import { Link, NavLink } from "react-router-dom";
-import { useContext, useEffect, useState } from "react";
+import { useContext} from "react";
 import { AuthContext } from "../../context/AuthContext";
 import ProfileDropdown from "../common/ProfileDropdown";
-import { getCustomerProfile } from "../../services/customerService";
 import "../../styles/Navbar.css";
 
 const Navbar = ({ cartCount = 0 }) => {
 
-  const { isAuthenticated, logout } = useContext(AuthContext);
-  const [user, setUser] = useState(null);
-
-  useEffect(() => {
-    if (isAuthenticated) {
-      const fetchProfile = async () => {
-        try {
-          const data = await getCustomerProfile();
-          setUser(data);
-        } catch (err) {
-          // console.error("Failed to fetch profile");
-        }
-      };
-      fetchProfile();
-    }
-  }, [isAuthenticated]);
+  const { isAuthenticated, logout, user} = useContext(AuthContext);
 
   return (
     <nav className="navbar navbar-expand-lg custom-navbar sticky-top">
@@ -99,7 +83,6 @@ const Navbar = ({ cartCount = 0 }) => {
                 <ProfileDropdown user={user} onLogout={logout} />
               </li>
             )}
-
           </ul>
         </div>
       </div>

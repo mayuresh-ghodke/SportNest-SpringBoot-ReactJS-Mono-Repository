@@ -23,9 +23,7 @@ api.interceptors.request.use(
 );
 
 // GLOBAL RESPONSE ERROR HANDLER
-api.interceptors.response.use(
-  (response) => response,
-  (error) => {
+api.interceptors.response.use((response) => response, (error) => {
     // Backend not reachable / network error
     if (!error.response) {
       toast.info("Server is waking up. Please wait 40-59 seconds.");
@@ -34,7 +32,7 @@ api.interceptors.response.use(
     else if (error.response.status === 401) {
       toast.error("Session expired. Please login again.");
       localStorage.removeItem("token");
-      window.location.href = "/shop/login";
+      window.location.replace("/shop/login");
     } 
     // Forbidden
     else if (error.response.status === 403) {

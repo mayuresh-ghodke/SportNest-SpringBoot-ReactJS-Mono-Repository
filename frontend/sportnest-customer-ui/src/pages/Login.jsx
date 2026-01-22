@@ -1,13 +1,12 @@
 import { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
 import { AuthContext } from "../context/AuthContext";
 import "../styles/Login.css";
 import api from "../services/customer-helper";
 
 const Login = () => {
 
-  const { setToken } = useContext(AuthContext);
+  const { login } = useContext(AuthContext);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -17,17 +16,19 @@ const Login = () => {
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
+    
     e.preventDefault();
     setError("");
 
     try {
       setLoading(true);
-      const res = await api.post("/auth/login", { username: email, password },{ headers: 
-          { "Content-Type": "application/json" } 
-        }
+      const res = await api.post("/auth/login", 
+        { username: email, password },
+        { headers: { "Content-Type": "application/json" }}
       );
 
-      setToken(res.data.token);
+      // here we are setting the token generated at server for user after login success
+      login(res.data.token);
       navigate("/shop/home");
 
     } catch (err) {

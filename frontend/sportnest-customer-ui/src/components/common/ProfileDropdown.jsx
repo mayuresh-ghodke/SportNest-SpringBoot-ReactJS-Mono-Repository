@@ -9,11 +9,8 @@ function ProfileDropdown({ user, onLogout }) {
     return (
         <Dropdown align="end">
             <Dropdown.Toggle variant="outline-light" id="dropdown-basic">
-                {user?.firstName && user?.lastName
-                    ? `${user.customer.firstName} ${user.customer.lastName}`
-                    : "My Account"}
+                {user?.sub}
             </Dropdown.Toggle>
-
 
             <Dropdown.Menu>
                 <Dropdown.Item onClick={() => navigate('/shop/profile')}>

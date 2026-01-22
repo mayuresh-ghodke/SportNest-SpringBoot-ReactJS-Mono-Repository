@@ -1,5 +1,5 @@
 import { createContext, useState, useEffect } from "react";
-import axios from "axios";
+import { jwtDecode } from "jwt-decode";
 
 export const AuthContext = createContext();
 
@@ -9,64 +9,39 @@ export const AuthProvider = ({ children }) => {
     localStorage.getItem("token")
   );
 
-  const isAuthenticated = !!token;
+  const [user, setUser] = useState(null);
+  const isAuthenticated = Boolean(token);
 
-  const api = axios.create({
-    baseURL: "http://localhost:8020/shop/api"
-  });
-
-  api.interceptors.request.use((config) => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
-    }
-    return config;
-  });
-
-  api.interceptors.response.use(
-    (response) => response,
-    (error) => {
-      if (error.response && error.response.status === 401) {
-        localStorage.removeItem("token");
-        window.location.replace("/shop/login"); 
-      }
-      return Promise.reject(error);
-    }
-  );
-
-  // attach token automatically
-  // api.interceptors.request.use(
-  //   (config) => {
-  //     if (token) {
-  //       config.headers.Authorization = `Bearer ${token}`;
-  //     }
-  //     return config;
-  //   },
-  //   (error) => Promise.reject(error)
-  // );
+  const login = (jwt) => {
+    const decoded = jwtDecode(jwt);
+    setToken(jwt);
+    setUser(decoded);
+    localStorage.setItem("token", jwt);
+  }
 
   const logout = () => {
     setToken(null);
+    setUser(null);
     localStorage.removeItem("token");
   };
 
   // persist token
   useEffect(() => {
     if (token) {
-      localStorage.setItem("token", token);
+      const decoded = jwtDecode(token);
+
+      // auto logout if expired
+      if(decoded.exp * 1000 < Date.now()){
+        logout();
+      }
+      else{
+        setUser(decoded);
+      }
     }
   }, [token]);
 
   return (
-    <AuthContext.Provider
-      value={{
-        token,
-        setToken,
-        isAuthenticated,
-        logout,
-        api
-      }}
-    >
+    <AuthContext.Provider value={{token,user,isAuthenticated,login,logout}}>
       {children}
     </AuthContext.Provider>
   );

@@ -44,7 +44,7 @@ const CustomerRoutes = () => (
 
     <Route path="/shop/orders" element={<ProtectedRoute><Orders /></ProtectedRoute>} />
 
-    <Route path="/shop/track-order" element={<OrderTracking />} />
+    <Route path="/shop/track-order" element={<ProtectedRoute><OrderTracking /></ProtectedRoute>} />
 
     <Route path="/shop/orders/:orderId" element={<ProtectedRoute><OrderInformation /></ProtectedRoute>} />
 
